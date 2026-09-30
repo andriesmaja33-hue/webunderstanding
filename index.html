@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumen Roast — Sampler Checkout Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+    <div class="vignette"></div>
+
+    <header class="topbar">
+      <p class="mark">Lumen Roast</p>
+      <p class="stage-label" id="stage-label">Sign in</p>
+    </header>
+
+    <main>
+      <section class="panel" id="panel-login" data-screen="login">
+        <p class="kicker">Members tasting room</p>
+        <h1>Sign in to see this week’s sampler deals.</h1>
+        <p class="lede">
+          Demo only — coffee sampler packs. Use
+          <strong>demo@lumenroast.com</strong> / <strong>lumen123</strong>
+        </p>
+        <form id="login-form" novalidate>
+          <label>
+            Email
+            <input type="email" name="email" autocomplete="username" required />
+          </label>
+          <label>
+            Password
+            <input
+              type="password"
+              name="password"
+              autocomplete="current-password"
+              required
+            />
+          </label>
+          <p class="form-error" id="login-error" hidden></p>
+          <button type="submit">Enter the tasting room</button>
+        </form>
+      </section>
+
+      <section class="panel hidden" id="panel-deals" data-screen="deals" hidden>
+        <p class="kicker">This week’s flights</p>
+        <h1>Pick a sampler pack.</h1>
+        <p class="lede">
+          Best value is highlighted. You can also let us choose it for you.
+        </p>
+        <div class="deal-grid" id="deal-grid"></div>
+        <div class="deal-actions">
+          <button type="button" class="ghost" id="btn-best">Choose best value</button>
+          <button type="button" id="btn-continue" disabled>Continue to checkout</button>
+        </div>
+      </section>
+
+      <section class="panel hidden" id="panel-checkout" data-screen="checkout" hidden>
+        <p class="kicker">Checkout</p>
+        <h1>Pay for your sampler.</h1>
+        <div class="checkout-layout">
+          <aside class="summary" id="order-summary"></aside>
+          <form id="pay-form" novalidate>
+            <label>
+              Name on card
+              <input name="name" autocomplete="cc-name" required />
+            </label>
+            <label>
+              Card number
+              <input
+                name="card"
+                inputmode="numeric"
+                autocomplete="cc-number"
+                placeholder="4242 4242 4242 4242"
+                required
+              />
+            </label>
+            <div class="row">
+              <label>
+                Expiry
+                <input name="expiry" placeholder="MM/YY" autocomplete="cc-exp" required />
+              </label>
+              <label>
+                CVC
+                <input name="cvc" inputmode="numeric" autocomplete="cc-csc" required />
+              </label>
+            </div>
+            <p class="hint">Fake payment — nothing is charged or stored.</p>
+            <p class="form-error" id="pay-error" hidden></p>
+            <div class="deal-actions">
+              <button type="button" class="ghost" id="btn-back">Back to deals</button>
+              <button type="submit">Place demo order</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel hidden" id="panel-done" data-screen="done" hidden>
+        <p class="kicker">Confirmed</p>
+        <h1>Your tasting box is on its way.</h1>
+        <p class="lede" id="done-copy"></p>
+        <button type="button" class="ghost" id="btn-reset">Start over</button>
+      </section>
+    </main>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+        }
+      }
+    </script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
